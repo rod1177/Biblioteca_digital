@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "dev": "nodemon src/server.js",
-      "start": "node src/server.js",
-      "test": "jest --coverage"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +23,32 @@
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.0",
+    "@babel/preset-env": "^8.0.0",
+    "babel-jest": "^30.4.1",
     "jest": "^30.4.2",
     "nodemon": "^3.1.14",
     "supertest": "^7.2.2"
-  }
+  },
+  "jest": {
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  },
+  "testEnvironment": "node",
+  "collectCoverageFrom": [
+    "src/patterns/**/*.js",
+    "src/services/**/*.js",
+    "src/controllers/**/*.js",
+    "!src/**/*.test.js"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "lines": 80,
+      "functions": 80,
+      "branches": 80,
+      "statements": 80
+    }
+  },
+  "coverageReporters": ["text", "html", "lcov"]
+}
 }
