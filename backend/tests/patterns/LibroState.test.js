@@ -105,3 +105,26 @@ describe('LibroState - Patrón State', () => {
     });
   });
 });
+import { LibroState } from '../../src/patterns/state/LibroState.js';
+
+describe('LibroState - Clase base', () => {
+  test('prestar() lanza error si no se implementa', () => {
+    const state = new LibroState();
+    expect(() => state.prestar({})).toThrow('prestar() debe implementarse');
+  });
+
+  test('reservar() lanza error si no se implementa', () => {
+    const state = new LibroState();
+    expect(() => state.reservar({})).toThrow('reservar() debe implementarse');
+  });
+
+  test('devolver() lanza error si no se implementa', () => {
+    const state = new LibroState();
+    expect(() => state.devolver({})).toThrow('devolver() debe implementarse');
+  });
+
+  test('getEstado() lanza error si no se implementa', () => {
+    const state = new LibroState();
+    expect(() => state.getEstado()).toThrow('getEstado() debe implementarse');
+  });
+});

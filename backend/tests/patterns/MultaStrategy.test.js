@@ -59,3 +59,11 @@ describe('MultaStrategy - Patrón Strategy', () => {
     });
   });
 });
+import { MultaStrategy } from '../../src/patterns/strategy/MultaStrategy.js';
+
+describe('MultaStrategy - Clase base', () => {
+  test('calcular() lanza error si no se implementa', () => {
+    const strategy = new MultaStrategy();
+    expect(() => strategy.calcular(3)).toThrow('calcular() debe implementarse');
+  });
+});
