@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "catalogo": "Catalogue",
+    "prestamos": "Prêts",
+    "multas": "Amendes",
+    "admin": "Administration",
+    "cerrarSesion": "Déconnexion",
+    "misPrestamos": "Mes Prêts",
+    "misMultas": "Mes Amendes"
+
+  },
+  "login": {
+    "marca": "Bibliothèque Numérique",
+    "titulo": "Connexion",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "btn": "Se connecter",
+    "placeholder_email": "courriel@exemple.com",
+    "placeholder_password": "••••••••",
+    "error": "Identifiants incorrects"
+  },
+  "libros": {
+    "titulo": "Catalogue de livres",
+    "buscar": "Rechercher un livre...",
+    "nuevo": "Nouveau livre",
+    "disponibles": "Disponibles seulement",
+    "tabla": {
+      "titulo": "Titre",
+      "autor": "Auteur",
+      "categoria": "Catégorie",
+      "estado": "Statut",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "disponible": "Disponible",
+      "prestado": "Emprunté",
+      "reservado": "Réservé"
+    },
+    "acciones": {
+      "prestar": "Emprunter",
+      "editar": "Modifier",
+      "eliminar": "Supprimer"
+    },
+    "form": {
+      "titulo": "Titre",
+      "isbn": "ISBN",
+      "categoria": "Catégorie",
+      "anio": "Année",
+      "stock": "Stock",
+      "descripcion": "Description",
+      "guardar": "Enregistrer",
+      "cancelar": "Annuler"
+    }
+  },
+  "prestamos": {
+    "titulo": "Prêts",
+    "nuevo": "Nouveau prêt",
+    "tabla": {
+      "libro": "Livre",
+      "usuario": "Utilisateur",
+      "fechaPrestamo": "Date du prêt",
+      "fechaLimite": "Date limite",
+      "estado": "Statut",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "activo": "Actif",
+      "devuelto": "Retourné",
+      "vencido": "En retard"
+    },
+    "acciones": {
+      "devolver": "Retourner"
+    }
+  },
+  "multas": {
+    "titulo": "Amendes",
+    "pendientes": "En attente seulement",
+    "tabla": {
+      "usuario": "Utilisateur",
+      "libro": "Livre",
+      "dias": "Jours de retard",
+      "monto": "Montant",
+      "estado": "Statut",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "pendiente": "En attente",
+      "pagada": "Payée"
+    },
+    "acciones": {
+      "pagar": "Payer"
+    }
+  },
+  "comun": {
+    "cargando": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "sinResultados": "Aucun résultat",
+    "confirmar": "Êtes-vous sûr?",
+    "si": "Oui",
+    "no": "Non"
+  },
+"registro": {
+  "titulo": "Créer un compte",
+  "nombre": "Prénom",
+  "apellido": "Nom",
+  "email": "Courriel",
+  "password": "Mot de passe",
+  "btn": "S'inscrire",
+  "yaTienes": "Vous avez déjà un compte?",
+  "iniciarSesion": "Se connecter",
+  "exito": "Compte créé avec succès",
+  "noTienes": "Vous n'avez pas de compte?",
+  "crearCuenta": "S'inscrire"
+},
+"estado": {
+  "disponible": "Disponible",
+  "prestado": "Emprunté",
+  "reservado": "Réservé",
+  "activo": "Actif",
+  "devuelto": "Retourné",
+  "vencido": "En retard",
+  "pendiente": "En attente",
+  "pagada": "Payée",
+  "estudiante": "Étudiant",
+  "profesor": "Professeur",
+  "admin": "Administrateur"
+}
+}

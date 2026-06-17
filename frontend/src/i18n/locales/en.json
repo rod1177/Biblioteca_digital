@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "catalogo": "Catalog",
+    "prestamos": "Loans",
+    "multas": "Fines",
+    "admin": "Administration",
+    "cerrarSesion": "Log Out",
+    "misPrestamos": "My Loans",
+    "misMultas": "My Fines"
+  },
+  "login": {
+    "marca": "Digital Library",
+    "titulo": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "btn": "Sign In",
+    "placeholder_email": "email@example.com",
+    "placeholder_password": "••••••••",
+    "error": "Invalid credentials"
+  },
+  "libros": {
+    "titulo": "Book Catalog",
+    "buscar": "Search book...",
+    "nuevo": "New Book",
+    "disponibles": "Available only",
+    "tabla": {
+      "titulo": "Title",
+      "autor": "Author",
+      "categoria": "Category",
+      "estado": "Status",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "disponible": "Available",
+      "prestado": "Checked Out",
+      "reservado": "Reserved"
+    },
+    "acciones": {
+      "prestar": "Borrow",
+      "editar": "Edit",
+      "eliminar": "Delete"
+    },
+    "form": {
+      "titulo": "Title",
+      "isbn": "ISBN",
+      "categoria": "Category",
+      "anio": "Year",
+      "stock": "Stock",
+      "descripcion": "Description",
+      "guardar": "Save",
+      "cancelar": "Cancel"
+    }
+  },
+  "prestamos": {
+    "titulo": "Loans",
+    "nuevo": "New Loan",
+    "tabla": {
+      "libro": "Book",
+      "usuario": "User",
+      "fechaPrestamo": "Loan Date",
+      "fechaLimite": "Due Date",
+      "estado": "Status",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "activo": "Active",
+      "devuelto": "Returned",
+      "vencido": "Overdue"
+    },
+    "acciones": {
+      "devolver": "Return"
+    }
+  },
+  "multas": {
+    "titulo": "Fines",
+    "pendientes": "Pending only",
+    "tabla": {
+      "usuario": "User",
+      "libro": "Book",
+      "dias": "Overdue days",
+      "monto": "Amount",
+      "estado": "Status",
+      "acciones": "Actions"
+    },
+    "estado": {
+      "pendiente": "Pending",
+      "pagada": "Paid"
+    },
+    "acciones": {
+      "pagar": "Pay"
+    }
+  },
+  "comun": {
+    "cargando": "Loading...",
+    "error": "An error occurred",
+    "sinResultados": "No results",
+    "confirmar": "Are you sure?",
+    "si": "Yes",
+    "no": "No"
+  },
+"registro": {
+  "titulo": "Create Account",
+  "nombre": "First Name",
+  "apellido": "Last Name",
+  "email": "Email",
+  "password": "Password",
+  "btn": "Sign Up",
+  "yaTienes": "Already have an account?",
+  "iniciarSesion": "Sign in",
+  "exito": "Account created successfully",
+  "noTienes": "Don't have an account?",
+  "crearCuenta": "Sign up"
+},
+"estado": {
+  "disponible": "Available",
+  "prestado": "Checked Out",
+  "reservado": "Reserved",
+  "activo": "Active",
+  "devuelto": "Returned",
+  "vencido": "Overdue",
+  "pendiente": "Pending",
+  "pagada": "Paid",
+  "estudiante": "Student",
+  "profesor": "Professor",
+  "admin": "Administrator"
+}
+}

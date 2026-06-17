@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "catalogo": "Catálogo",
+    "prestamos": "Préstamos",
+    "multas": "Multas",
+    "admin": "Administración",
+    "cerrarSesion": "Cerrar Sesión",
+    "misPrestamos": "Mis Préstamos",
+    "misMultas": "Mis Multas"
+  },
+  "login": {
+    "marca": "Biblioteca Digital",
+    "titulo": "Iniciar Sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "btn": "Ingresar",
+    "placeholder_email": "correo@ejemplo.com",
+    "placeholder_password": "••••••••",    
+    "error": "Credenciales incorrectas"
+  },
+  "libros": {
+    "titulo": "Catálogo de Libros",
+    "buscar": "Buscar libro...",
+    "nuevo": "Nuevo Libro",
+    "disponibles": "Solo disponibles",
+    "tabla": {
+      "titulo": "Título",
+      "autor": "Autor",
+      "categoria": "Categoría",
+      "estado": "Estado",
+      "acciones": "Acciones"
+    },
+    "estado": {
+      "disponible": "Disponible",
+      "prestado": "Prestado",
+      "reservado": "Reservado"
+    },
+    "acciones": {
+      "prestar": "Prestar",
+      "editar": "Editar",
+      "eliminar": "Eliminar"
+    },
+    "form": {
+      "titulo": "Título",
+      "isbn": "ISBN",
+      "categoria": "Categoría",
+      "anio": "Año",
+      "stock": "Stock",
+      "descripcion": "Descripción",
+      "guardar": "Guardar",
+      "cancelar": "Cancelar"
+    }
+  },
+  "prestamos": {
+    "titulo": "Préstamos",
+    "nuevo": "Nuevo Préstamo",
+    "tabla": {
+      "libro": "Libro",
+      "usuario": "Usuario",
+      "fechaPrestamo": "Fecha Préstamo",
+      "fechaLimite": "Fecha Límite",
+      "estado": "Estado",
+      "acciones": "Acciones"
+    },
+    "estado": {
+      "activo": "Activo",
+      "devuelto": "Devuelto",
+      "vencido": "Vencido"
+    },
+    "acciones": {
+      "devolver": "Devolver"
+    }
+  },
+  "multas": {
+    "titulo": "Multas",
+    "pendientes": "Solo pendientes",
+    "tabla": {
+      "usuario": "Usuario",
+      "libro": "Libro",
+      "dias": "Días de retraso",
+      "monto": "Monto",
+      "estado": "Estado",
+      "acciones": "Acciones"
+    },
+    "estado": {
+      "pendiente": "Pendiente",
+      "pagada": "Pagada"
+    },
+    "acciones": {
+      "pagar": "Pagar"
+    }
+  },
+  "comun": {
+    "cargando": "Cargando...",
+    "error": "Ocurrió un error",
+    "sinResultados": "Sin resultados",
+    "confirmar": "¿Estás seguro?",
+    "si": "Sí",
+    "no": "No"
+  },
+
+"registro": {
+  "titulo": "Crear Cuenta",
+  "nombre": "Nombre",
+  "apellido": "Apellido",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "btn": "Registrarse",
+  "yaTienes": "¿Ya tienes cuenta?",
+  "iniciarSesion": "Inicia sesión",
+  "exito": "Cuenta creada exitosamente",
+  "noTienes": "¿No tienes cuenta?",
+  "crearCuenta": "Regístrate"
+},
+"estado": {
+  "disponible": "Disponible",
+  "prestado": "Prestado",
+  "reservado": "Reservado",
+  "activo": "Activo",
+  "devuelto": "Devuelto",
+  "vencido": "Vencido",
+  "pendiente": "Pendiente",
+  "pagada": "Pagada",
+  "estudiante": "Estudiante",
+  "profesor": "Profesor",
+  "admin": "Administrador"
+}
+
+}

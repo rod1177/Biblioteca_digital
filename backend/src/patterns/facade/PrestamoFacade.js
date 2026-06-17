@@ -8,42 +8,39 @@ import { NotificacionObserver } from '../observer/NotificacionObserver.js';
 export class PrestamoFacade {
 
   // Realiza el proceso completo de préstamo
-  async realizarPrestamo(usuarioId, libroId) {
-    const libro = await Libro.findByPk(libroId);
-    if (!libro) throw new Error('Libro no encontrado');
+ async realizarPrestamo(usuarioId, libroId) {
+  const libro = await Libro.findByPk(libroId);
+  if (!libro) throw new Error('Libro no encontrado');
+  if (libro.stock <= 0) throw new Error('No hay ejemplares disponibles');
 
-    // Aplicar State
-    const state = libro.estado === 'disponible'
-      ? new DisponibleState()
-      : new PrestadoState();
+  // Calcular fecha límite (15 días)
+  const fechaPrestamo = new Date();
+  const fechaLimite = new Date();
+  fechaLimite.setDate(fechaLimite.getDate() + 15);
 
-    const libroProxy = { estado: libro.estado, state };
-    state.prestar(libroProxy); // valida y cambia estado
+  // Crear préstamo
+  const prestamo = await Prestamo.create({
+    usuarioId,
+    libroId,
+    fechaPrestamo: fechaPrestamo.toISOString().split('T')[0],
+    fechaLimite: fechaLimite.toISOString().split('T')[0],
+    estado: 'activo'
+  });
 
-    // Calcular fecha límite (15 días)
-    const fechaPrestamo = new Date();
-    const fechaLimite = new Date();
-    fechaLimite.setDate(fechaLimite.getDate() + 15);
+  // Reducir stock y cambiar estado solo si stock llega a 0
+  const nuevoStock = libro.stock - 1;
+  await libro.update({
+    stock: nuevoStock,
+    estado: nuevoStock === 0 ? 'prestado' : 'disponible'
+  });
 
-    // Crear préstamo
-    const prestamo = await Prestamo.create({
-      usuarioId,
-      libroId,
-      fechaPrestamo: fechaPrestamo.toISOString().split('T')[0],
-      fechaLimite: fechaLimite.toISOString().split('T')[0],
-      estado: 'activo'
-    });
+  NotificacionObserver.notificar('PRESTAMO_REALIZADO', {
+    usuarioId, libroId, prestamoId: prestamo.id,
+    fechaLimite: fechaLimite.toISOString().split('T')[0]
+  });
 
-    // Actualizar estado del libro
-    await libro.update({ estado: 'prestado' });
-
-    // Notificar via Observer
-    NotificacionObserver.notificar('PRESTAMO_REALIZADO', {
-      usuarioId, libroId, prestamoId: prestamo.id
-    });
-
-    return prestamo;
-  }
+  return { prestamo, fechaLimite: fechaLimite.toISOString().split('T')[0] };
+}
 
   // Realiza la devolución y calcula multa si aplica
   async realizarDevolucion(prestamoId) {

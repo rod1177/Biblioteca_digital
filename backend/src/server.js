@@ -6,11 +6,11 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   await testConnection();
-  await sequelize.sync({ alter: true });
+  await sequelize.sync({ alter: false });
   console.log('Tablas sincronizadas');
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
   });
 };
 
-start();
+start(); 
