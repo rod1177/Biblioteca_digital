@@ -37,6 +37,7 @@
     },
     "acciones": {
       "prestar": "Borrow",
+      "reservar": "Reserve",
       "editar": "Edit",
       "eliminar": "Delete"
     },
@@ -98,30 +99,33 @@
     "si": "Yes",
     "no": "No"
   },
-"registro": {
-  "titulo": "Create Account",
-  "nombre": "First Name",
-  "apellido": "Last Name",
-  "email": "Email",
-  "password": "Password",
-  "btn": "Sign Up",
-  "yaTienes": "Already have an account?",
-  "iniciarSesion": "Sign in",
-  "exito": "Account created successfully",
-  "noTienes": "Don't have an account?",
-  "crearCuenta": "Sign up"
-},
-"estado": {
-  "disponible": "Available",
-  "prestado": "Checked Out",
-  "reservado": "Reserved",
-  "activo": "Active",
-  "devuelto": "Returned",
-  "vencido": "Overdue",
-  "pendiente": "Pending",
-  "pagada": "Paid",
-  "estudiante": "Student",
-  "profesor": "Professor",
-  "admin": "Administrator"
-}
+  "registro": {
+    "titulo": "Create Account",
+    "nombre": "First Name",
+    "apellido": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "btn": "Sign Up",
+    "yaTienes": "Already have an account?",
+    "iniciarSesion": "Sign in",
+    "exito": "Account created successfully",
+    "noTienes": "Don't have an account?",
+    "crearCuenta": "Sign up"
+  },
+  "estado": {
+    "disponible": "Available",
+    "prestado": "Checked Out",
+    "reservado": "Reserved",
+    "activo": "Active",
+    "devuelto": "Returned",
+    "vencido": "Overdue",
+    "pendiente": "Pending",
+    "pagada": "Paid",
+    "estudiante": "Student",
+    "profesor": "Professor",
+    "admin": "Administrator",
+    "usuario": "User",
+    "true": "Active",
+    "false": "Inactive"
+  }
 }

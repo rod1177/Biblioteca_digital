@@ -7,14 +7,15 @@ import {
   actualizar,
   eliminar
 } from '../controllers/usuarioController.js';
+import { verificarToken, soloAdmin } from '../middlewares/auth.js';
 
 const router = Router();
 
 router.post('/registro', registrar);
 router.post('/login', login);
-router.get('/', listar);
-router.get('/:id', buscarPorId);
-router.put('/:id', actualizar);
-router.delete('/:id', eliminar);
+router.get('/',     verificarToken, soloAdmin, listar);   // solo admin
+router.get('/:id',  verificarToken, buscarPorId);
+router.put('/:id',  verificarToken, actualizar);
+router.delete('/:id', verificarToken, soloAdmin, eliminar);
 
 export default router;

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout.jsx';
 import Badge from '../components/common/Badge.jsx';
 import Button from '../components/common/Button.jsx';
+import ConfirmModal from '../components/common/ConfirmModal.jsx';
 import { prestamosApi } from '../services/api.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -11,35 +12,31 @@ export default function MisPrestamos() {
   const { usuario } = useAuth();
   const [prestamos, setPrestamos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [confirmar, setConfirmar] = useState({ open: false, id: null });
 
   const cargar = async () => {
     setCargando(true);
     try {
       const res = await prestamosApi.listarPorUsuario(usuario.id);
       setPrestamos(res.data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setCargando(false);
-    }
+    } catch (e) { console.error(e); }
+    finally { setCargando(false); }
   };
 
   useEffect(() => { cargar(); }, []);
 
-  const devolver = async (id) => {
-    if (!window.confirm(t('comun.confirmar'))) return;
+  const confirmarDevolucion = (id) => setConfirmar({ open: true, id });
+
+  const devolver = async () => {
     try {
-      await prestamosApi.devolver(id);
+      await prestamosApi.devolver(confirmar.id);
+      setConfirmar({ open: false, id: null });
       cargar();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
   };
 
   const diasRestantes = (fechaLimite) => {
-    const hoy = new Date();
-    const limite = new Date(fechaLimite);
-    const dias = Math.ceil((limite - hoy) / (1000 * 60 * 60 * 24));
+    const dias = Math.ceil((new Date(fechaLimite) - new Date()) / (1000 * 60 * 60 * 24));
     return dias;
   };
 
@@ -66,11 +63,9 @@ export default function MisPrestamos() {
             </thead>
             <tbody>
               {prestamos.length === 0 ? (
-                <tr>
-                  <td colSpan="6" className="text-center py-8 text-gray-400">
-                    {t('comun.sinResultados')}
-                  </td>
-                </tr>
+                <tr><td colSpan="6" className="text-center py-8 text-gray-400">
+                  {t('comun.sinResultados')}
+                </td></tr>
               ) : prestamos.map(p => {
                 const dias = diasRestantes(p.fechaLimite);
                 return (
@@ -80,15 +75,19 @@ export default function MisPrestamos() {
                     <td className="px-4 py-3">{p.fechaLimite}</td>
                     <td className="px-4 py-3">
                       {p.estado === 'activo' && (
-                        <span className={`font-medium ${dias < 0 ? 'text-red-600' : dias <= 3 ? 'text-orange-500' : 'text-green-600'}`}>
-                          {dias < 0 ? `${Math.abs(dias)} días de retraso` : `${dias} días restantes`}
+                        <span className={`font-medium ${
+                          dias < 0 ? 'text-red-600' :
+                          dias <= 3 ? 'text-orange-500' : 'text-green-600'}`}>
+                          {dias < 0
+                            ? `⚠️ ${Math.abs(dias)} días de retraso`
+                            : `${dias} días restantes`}
                         </span>
                       )}
                     </td>
                     <td className="px-4 py-3"><Badge estado={p.estado}/></td>
                     <td className="px-4 py-3">
                       {p.estado === 'activo' && (
-                        <Button variant="success" onClick={() => devolver(p.id)}>
+                        <Button variant="success" onClick={() => confirmarDevolucion(p.id)}>
                           {t('prestamos.acciones.devolver')}
                         </Button>
                       )}
@@ -100,6 +99,13 @@ export default function MisPrestamos() {
           </table>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={confirmar.open}
+        mensaje="¿Confirmas la devolución del libro?"
+        variante="success"
+        onConfirm={devolver}
+        onCancel={() => setConfirmar({ open: false, id: null })}/>
     </Layout>
   );
 }

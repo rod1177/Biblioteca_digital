@@ -21,14 +21,8 @@ export function AuthProvider({ children }) {
 
   const esAdmin = () => usuario?.rol === 'admin';
 
-return (
-  <AuthContext.Provider value={{ usuario, login, logout, esAdmin }}>
-    {children}
-  </AuthContext.Provider>
-);
-
   return (
-    <AuthContext.Provider value={{ usuario, login, logout }}>
+    <AuthContext.Provider value={{ usuario, login, logout, esAdmin }}>
       {children}
     </AuthContext.Provider>
   );

@@ -8,16 +8,20 @@ export class PrestamoService {
 
   async listar() {
     return await Prestamo.findAll({
-      include: [{ model: Usuario, attributes: { exclude: ['password'] } },
-                { model: Libro }],
+      include: [
+        { model: Usuario, attributes: { exclude: ['password'] } },
+        { model: Libro }
+      ],
       order: [['createdAt', 'DESC']]
     });
   }
 
   async buscarPorId(id) {
     const prestamo = await Prestamo.findByPk(id, {
-      include: [{ model: Usuario, attributes: { exclude: ['password'] } },
-                { model: Libro }]
+      include: [
+        { model: Usuario, attributes: { exclude: ['password'] } },
+        { model: Libro }
+      ]
     });
     if (!prestamo) throw new Error('Préstamo no encontrado');
     return prestamo;
@@ -31,8 +35,8 @@ export class PrestamoService {
     });
   }
 
-  async realizar(usuarioId, libroId) {
-    return await this.facade.realizarPrestamo(usuarioId, libroId);
+  async realizar(usuarioId, libroId, dias = 15) {
+    return await this.facade.realizarPrestamo(usuarioId, libroId, dias);
   }
 
   async devolver(prestamoId) {

@@ -15,6 +15,7 @@ export default function CatalogoPublico() {
   const [cargando, setCargando] = useState(true);
   const [modalPrestamo, setModalPrestamo] = useState(false);
   const [libroSeleccionado, setLibroSeleccionado] = useState(null);
+  const [dias, setDias] = useState(15);
   const [mensaje, setMensaje] = useState('');
 
   const cargar = async () => {
@@ -35,16 +36,25 @@ export default function CatalogoPublico() {
 
   const abrirModalPrestamo = (libro) => {
     setLibroSeleccionado(libro);
-    setModalPrestamo(true);
+    setDias(15);
     setMensaje('');
+    setModalPrestamo(true);
   };
 
-  const realizarPrestamo = async (e) => {
-    e.preventDefault();
+  const fechaLimiteCalculada = () => {
+    const fecha = new Date();
+    fecha.setDate(fecha.getDate() + Number(dias));
+    return fecha.toLocaleDateString('es-MX', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+  };
+
+  const realizarPrestamo = async () => {
     try {
       await prestamosApi.realizar({
         usuarioId: usuario.id,
-        libroId: libroSeleccionado.id
+        libroId: libroSeleccionado.id,
+        dias: Number(dias)
       });
       setMensaje('✅ Préstamo realizado correctamente');
       setTimeout(() => {
@@ -53,7 +63,7 @@ export default function CatalogoPublico() {
         cargar();
       }, 2000);
     } catch (e) {
-      setMensaje('❌ Error al realizar el préstamo');
+      setMensaje('❌ ' + (e.response?.data?.error || 'Error al realizar el préstamo'));
     }
   };
 
@@ -72,11 +82,8 @@ export default function CatalogoPublico() {
         </div>
       </div>
 
-      {/* Encabezado */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-blue-900">
-          {t('libros.titulo')}
-        </h1>
+        <h1 className="text-2xl font-bold text-blue-900">{t('libros.titulo')}</h1>
       </div>
 
       {/* Búsqueda */}
@@ -119,15 +126,13 @@ export default function CatalogoPublico() {
                   <td className="px-4 py-3 font-medium">{libro.titulo}</td>
                   <td className="px-4 py-3 text-gray-500">{libro.categoria}</td>
                   <td className="px-4 py-3">{libro.stock}</td>
-                  <td className="px-4 py-3">
-                    <Badge estado={libro.estado}/>
-                  </td>
+                  <td className="px-4 py-3"><Badge estado={libro.estado}/></td>
                   <td className="px-4 py-3">
                     <Button
                       variant="success"
                       onClick={() => abrirModalPrestamo(libro)}
                       disabled={libro.stock === 0}>
-                      {t('libros.acciones.prestar')}
+                      {t('libros.acciones.reservar')}
                     </Button>
                   </td>
                 </tr>
@@ -143,6 +148,7 @@ export default function CatalogoPublico() {
         onClose={() => setModalPrestamo(false)}
         titulo={t('prestamos.nuevo')}>
         <div className="space-y-4">
+          {/* Info libro */}
           <div className="bg-blue-50 rounded-lg p-3">
             <p className="text-sm text-gray-600">
               📖 <strong>{libroSeleccionado?.titulo}</strong>
@@ -150,18 +156,37 @@ export default function CatalogoPublico() {
             <p className="text-sm text-gray-500 mt-1">
               Stock disponible: <strong>{libroSeleccionado?.stock}</strong> ejemplar(es)
             </p>
-            <p className="text-sm text-blue-700 mt-1">
-              📅 Fecha límite:{' '}
-              <strong>
-                {new Date(Date.now() + 15 * 24 * 60 * 60 * 1000)
-                  .toLocaleDateString()}
-              </strong>
-              {' '}(15 días)
+          </div>
+
+          {/* Selector de días */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              📅 Plazo del préstamo
+            </label>
+            <div className="flex items-center gap-3">
+              <input
+                type="range"
+                min={1}
+                max={15}
+                value={dias}
+                onChange={e => setDias(e.target.value)}
+                className="flex-1 accent-blue-700"/>
+              <span className="text-blue-900 font-bold text-lg w-16 text-center">
+                {dias} día{dias > 1 ? 's' : ''}
+              </span>
+            </div>
+            <p className="text-sm text-blue-700 mt-2">
+              📆 Fecha de devolución: <strong>{fechaLimiteCalculada()}</strong>
             </p>
+            {dias >= 13 && (
+              <p className="text-xs text-orange-500 mt-1">
+                ⚠️ Máximo permitido: 15 días
+              </p>
+            )}
           </div>
 
           {mensaje && (
-            <p className={`text-sm text-center font-medium 
+            <p className={`text-sm text-center font-medium
               ${mensaje.includes('✅') ? 'text-green-600' : 'text-red-600'}`}>
               {mensaje}
             </p>
@@ -170,7 +195,7 @@ export default function CatalogoPublico() {
           {!mensaje && (
             <div className="flex gap-3">
               <Button onClick={realizarPrestamo} className="flex-1">
-                {t('libros.acciones.prestar')}
+                {t('libros.acciones.reservar')}
               </Button>
               <Button
                 variant="secondary"

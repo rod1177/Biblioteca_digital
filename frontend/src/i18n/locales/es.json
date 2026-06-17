@@ -15,7 +15,7 @@
     "password": "Contraseña",
     "btn": "Ingresar",
     "placeholder_email": "correo@ejemplo.com",
-    "placeholder_password": "••••••••",    
+    "placeholder_password": "••••••••",
     "error": "Credenciales incorrectas"
   },
   "libros": {
@@ -37,6 +37,7 @@
     },
     "acciones": {
       "prestar": "Prestar",
+      "reservar": "Reservar",
       "editar": "Editar",
       "eliminar": "Eliminar"
     },
@@ -98,32 +99,33 @@
     "si": "Sí",
     "no": "No"
   },
-
-"registro": {
-  "titulo": "Crear Cuenta",
-  "nombre": "Nombre",
-  "apellido": "Apellido",
-  "email": "Correo electrónico",
-  "password": "Contraseña",
-  "btn": "Registrarse",
-  "yaTienes": "¿Ya tienes cuenta?",
-  "iniciarSesion": "Inicia sesión",
-  "exito": "Cuenta creada exitosamente",
-  "noTienes": "¿No tienes cuenta?",
-  "crearCuenta": "Regístrate"
-},
-"estado": {
-  "disponible": "Disponible",
-  "prestado": "Prestado",
-  "reservado": "Reservado",
-  "activo": "Activo",
-  "devuelto": "Devuelto",
-  "vencido": "Vencido",
-  "pendiente": "Pendiente",
-  "pagada": "Pagada",
-  "estudiante": "Estudiante",
-  "profesor": "Profesor",
-  "admin": "Administrador"
-}
-
+  "registro": {
+    "titulo": "Crear Cuenta",
+    "nombre": "Nombre",
+    "apellido": "Apellido",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "btn": "Registrarse",
+    "yaTienes": "¿Ya tienes cuenta?",
+    "iniciarSesion": "Inicia sesión",
+    "exito": "Cuenta creada exitosamente",
+    "noTienes": "¿No tienes cuenta?",
+    "crearCuenta": "Regístrate"
+  },
+  "estado": {
+    "disponible": "Disponible",
+    "prestado": "Prestado",
+    "reservado": "Reservado",
+    "activo": "Activo",
+    "devuelto": "Devuelto",
+    "vencido": "Vencido",
+    "pendiente": "Pendiente",
+    "pagada": "Pagada",
+    "estudiante": "Estudiante",
+    "profesor": "Profesor",
+    "admin": "Administrador",
+    "usuario": "Usuario",
+    "true": "Activo",
+    "false": "Inactivo"
+  }
 }

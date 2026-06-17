@@ -3,43 +3,38 @@ import { useTranslation } from 'react-i18next';
 import Layout from '../components/layout/Layout.jsx';
 import Badge from '../components/common/Badge.jsx';
 import Button from '../components/common/Button.jsx';
+import ConfirmModal from '../components/common/ConfirmModal.jsx';
 import { prestamosApi } from '../services/api.js';
 
 export default function Prestamos() {
   const { t } = useTranslation();
   const [prestamos, setPrestamos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [confirmar, setConfirmar] = useState({ open: false, id: null });
 
   const cargar = async () => {
     setCargando(true);
     try {
       const res = await prestamosApi.listar();
       setPrestamos(res.data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setCargando(false);
-    }
+    } catch (e) { console.error(e); }
+    finally { setCargando(false); }
   };
 
   useEffect(() => { cargar(); }, []);
 
-  const devolver = async (id) => {
-    if (!window.confirm(t('comun.confirmar'))) return;
+  const devolver = async () => {
     try {
-      await prestamosApi.devolver(id);
+      await prestamosApi.devolver(confirmar.id);
+      setConfirmar({ open: false, id: null });
       cargar();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
   };
 
   return (
     <Layout>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-blue-900">
-          {t('prestamos.titulo')}
-        </h1>
+        <h1 className="text-2xl font-bold text-blue-900">{t('prestamos.titulo')}</h1>
       </div>
 
       {cargando ? (
@@ -59,11 +54,9 @@ export default function Prestamos() {
             </thead>
             <tbody>
               {prestamos.length === 0 ? (
-                <tr>
-                  <td colSpan="6" className="text-center py-8 text-gray-400">
-                    {t('comun.sinResultados')}
-                  </td>
-                </tr>
+                <tr><td colSpan="6" className="text-center py-8 text-gray-400">
+                  {t('comun.sinResultados')}
+                </td></tr>
               ) : prestamos.map(p => (
                 <tr key={p.id} className="border-t hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium">{p.Libro?.titulo}</td>
@@ -73,7 +66,7 @@ export default function Prestamos() {
                   <td className="px-4 py-3"><Badge estado={p.estado}/></td>
                   <td className="px-4 py-3">
                     {p.estado === 'activo' && (
-                      <Button variant="success" onClick={() => devolver(p.id)}>
+                      <Button variant="success" onClick={() => setConfirmar({ open: true, id: p.id })}>
                         {t('prestamos.acciones.devolver')}
                       </Button>
                     )}
@@ -84,6 +77,13 @@ export default function Prestamos() {
           </table>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={confirmar.open}
+        mensaje="¿Confirmar la devolución del libro?"
+        variante="success"
+        onConfirm={devolver}
+        onCancel={() => setConfirmar({ open: false, id: null })}/>
     </Layout>
   );
 }

@@ -7,7 +7,6 @@
     "cerrarSesion": "Déconnexion",
     "misPrestamos": "Mes Prêts",
     "misMultas": "Mes Amendes"
-
   },
   "login": {
     "marca": "Bibliothèque Numérique",
@@ -38,6 +37,7 @@
     },
     "acciones": {
       "prestar": "Emprunter",
+      "reservar": "Réserver",
       "editar": "Modifier",
       "eliminar": "Supprimer"
     },
@@ -99,30 +99,33 @@
     "si": "Oui",
     "no": "Non"
   },
-"registro": {
-  "titulo": "Créer un compte",
-  "nombre": "Prénom",
-  "apellido": "Nom",
-  "email": "Courriel",
-  "password": "Mot de passe",
-  "btn": "S'inscrire",
-  "yaTienes": "Vous avez déjà un compte?",
-  "iniciarSesion": "Se connecter",
-  "exito": "Compte créé avec succès",
-  "noTienes": "Vous n'avez pas de compte?",
-  "crearCuenta": "S'inscrire"
-},
-"estado": {
-  "disponible": "Disponible",
-  "prestado": "Emprunté",
-  "reservado": "Réservé",
-  "activo": "Actif",
-  "devuelto": "Retourné",
-  "vencido": "En retard",
-  "pendiente": "En attente",
-  "pagada": "Payée",
-  "estudiante": "Étudiant",
-  "profesor": "Professeur",
-  "admin": "Administrateur"
-}
+  "registro": {
+    "titulo": "Créer un compte",
+    "nombre": "Prénom",
+    "apellido": "Nom",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "btn": "S'inscrire",
+    "yaTienes": "Vous avez déjà un compte?",
+    "iniciarSesion": "Se connecter",
+    "exito": "Compte créé avec succès",
+    "noTienes": "Vous n'avez pas de compte?",
+    "crearCuenta": "S'inscrire"
+  },
+  "estado": {
+    "disponible": "Disponible",
+    "prestado": "Emprunté",
+    "reservado": "Réservé",
+    "activo": "Actif",
+    "devuelto": "Retourné",
+    "vencido": "En retard",
+    "pendiente": "En attente",
+    "pagada": "Payée",
+    "estudiante": "Étudiant",
+    "profesor": "Professeur",
+    "admin": "Administrateur",
+    "usuario": "Utilisateur",
+    "true": "Actif",
+    "false": "Inactif"
+  }
 }
