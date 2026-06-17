@@ -19,14 +19,14 @@ const handleSubmit = async (e) => {
   setCargando(true);
   setError('');
   try {
-    const res = await usuariosApi.login(form);
-    login(res.data.usuario, res.data.token);
-    // Redirigir según rol
-    if (res.data.usuario.rol === 'admin') {
-      navigate('/catalogo');
-    } else {
-      navigate('/catalogo-publico');
+        const res = await usuariosApi.login(form);
+        login(res.data.usuario, res.data.token);
+        if (res.data.usuario.rol === 'admin') {
+        navigate('/catalogo');
+        } else {
+        navigate('/catalogo-publico');
     }
+
   } catch {
     setError(t('login.error'));
   } finally {
